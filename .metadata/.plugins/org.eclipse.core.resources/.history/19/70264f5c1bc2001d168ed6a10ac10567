@@ -1,0 +1,39 @@
+package S2day01;
+
+public class classmanager {
+
+	public static void main(String[] args) {
+		// 메뉴구성
+
+	}
+
+}
+
+interface program {
+	abstract void subjectPrint();
+	abstract void studentAdd();
+	abstract void studentSearch();
+	abstract void classAdd();
+	abstract void classDelete();
+}
+
+class subject implements program{
+	public void subjectPrint() {}
+	public void studentAdd() {}
+	public void studentSearch() {}
+	public void classAdd() {}
+	public void classDelete() {}
+}
+
+class student {
+	public void infoPrint() {
+		
+	}
+	public void subjectAdd() {
+		
+	}
+	public void subjectDelete() {
+		
+	}	
+	
+}

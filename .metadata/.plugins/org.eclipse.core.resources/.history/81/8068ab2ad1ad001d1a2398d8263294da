@@ -1,0 +1,20 @@
+package day13;
+
+import java.util.HashMap;
+
+public class 과제1 {
+
+	public static void main(String[] args) {
+		/* 단어장 단어 : 의미 => hello : 안녕
+		 * 
+		 * 5개를 입력하고 단어장을  출력
+		*/
+		HashMap<String, String> voca = new HashMap();
+		voca.put("hello", "안녕하세요");
+		voca.put("goodbye", "안녕히가세요");
+		voca.put("java", "자바");
+		voca.put("what is this", "이게뭐죠");
+		voca.put("i don't know", "몰라요");
+	}
+
+}

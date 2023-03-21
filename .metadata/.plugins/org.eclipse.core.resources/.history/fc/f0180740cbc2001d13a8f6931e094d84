@@ -1,0 +1,48 @@
+package S2day01;
+
+public class ProgramManager implements Program {
+
+	private Student [] std = new Student[10];
+	private int stdCount;
+	
+	@Override
+	public void printStudent() {
+		
+		for(int i = 0 ; i<stdCount; i++) {
+			std[i].stdPrint(); // 1명의 개인정보
+//			printStudentOne(std[i]); // 1명의 개인정보 + 수강정보
+		}
+		
+	}
+
+	@Override
+	public void insertStudent() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void searchStudent() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void registerSubject() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteSubject() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void printStudentOne(Student a) {
+		System.out.println("--학생정보--");
+		a.stdPrint();
+		System.out.println("--수강정보--");
+		a.subPrint();
+	}
+}

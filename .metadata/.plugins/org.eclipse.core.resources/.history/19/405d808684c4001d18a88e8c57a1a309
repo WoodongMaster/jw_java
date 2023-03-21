@@ -1,0 +1,29 @@
+package S2day03;
+
+import java.util.ArrayList;
+import java.util.stream.Stream;
+
+public class StreamEX {
+
+	public static void main(String[] args) {
+		ArrayList<String> str = new ArrayList<>();
+		
+		str.add("이순신");
+		str.add("강감찬");
+		str.add("권율");
+		str.add("김시민");
+		str.add("나보리");
+		str.add("선우용녀남자");
+		str.add("김치볶음밥너무좋아");
+		str.add("불닭에치즈먹어봄");
+		
+		Stream<String> s = str.stream().sorted().filter(n->n.length()>4);
+		
+		
+		s.forEach(System.out::println);
+		
+		
+
+	}
+
+}

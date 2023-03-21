@@ -1,0 +1,17 @@
+package S2day01;
+import java.util.Scanner;
+public class main {
+
+	public static void main(String[] args) {
+		
+		System.out.println("1. 학생등록");
+		System.out.println("2. 전체 학생확인");
+		System.out.println("3. 학생검색");
+		System.out.println("4. 수강신청");
+		System.out.println("5. 수강취소");
+		System.out.println("6. 종료");
+		
+
+	}
+
+}

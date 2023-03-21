@@ -1,0 +1,53 @@
+package day13;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class 과제2 {
+
+	public static void main(String[] args) {
+		/* 과목과 점수를 입력받아 출력, 합계, 평균 출력
+		 * 종료 키워드가 나올때까지 반복
+		 * 
+		 * 과목과 점수를 입력해주세요
+		 * 국어 : 60
+		 * 수학 : 60
+		 * 영어 :	60
+		 * 0 종료
+		 * 입력받은 map 출력 합계 평균출력
+		*/
+		Scanner scan=new Scanner(System.in);
+		HashMap<String, Integer> test = new HashMap();
+		String a=null;
+		int triger=1;
+		int b=0;
+		int sum=0;
+		double avg=0;
+		
+		while(true) {
+			if(triger==0) {
+				System.out.println("종료!");
+				break;
+			}
+		
+			System.out.println("과목과 점수를 입력해주세요.");
+			System.out.print("과목 : ");
+			a = scan.next();
+			System.out.print("점수 : ");
+			b = scan.nextInt();
+			test.put(a, b);
+			sum+=test.get(a);
+			System.out.println("더 입력하시겠습니까? (0 입력시 종료)");
+			triger=scan.nextInt();
+		}
+		
+		for(String tmp : test.keySet()) {
+			System.out.println(tmp+":"+test.get(tmp));
+		}
+		System.out.println("총 합계 : "+sum);
+		avg = sum/test.size();
+		System.out.println("평균 : "+avg);
+	}
+
+}

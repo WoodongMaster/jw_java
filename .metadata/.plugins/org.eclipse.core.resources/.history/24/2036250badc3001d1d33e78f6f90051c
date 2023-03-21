@@ -1,0 +1,74 @@
+package product;
+
+import java.util.Scanner;
+
+import S2day01.ProgramManager;
+
+public class main {
+
+	public static void main(String[] args) {
+		ProductManager pm = new ProductManager();
+		
+		Scanner scan = new Scanner(System.in);
+		int menu = 0;
+		
+		do {
+			System.out.println("== 주문하기 메뉴 ==");
+			System.out.println("1. 메뉴추가");
+			System.out.println("2. 메뉴판출력");
+			System.out.println("3. 메뉴삭제");
+			System.out.println("4. 가격변경");
+			System.out.println("5. 주문");
+			System.out.println("6. 주문내역");
+			System.out.println("0. 종료");
+			
+			System.out.print("원하는 메뉴 번호를 입력해주세요 : ");
+			menu = scan.nextInt();
+			
+			switch(menu) {
+			case 1:
+				pm.menuAdd();
+				break;
+			case 2:
+				pm.menuPrint();
+				break;
+			case 3:
+				pm.menuDelete();
+				break;
+			case 4:
+				//pm.menuPricefix();
+				break;
+			case 5:
+				pm.order();
+				break;
+			case 6:
+				pm.orderlistPrint();
+				break;
+			case 0:
+				break;
+			default:
+				System.out.println("잘못된 번호입니다.");
+				break;
+			}
+			
+		}while(menu != 0);
+		
+		System.out.println("프로그램 종료!");
+		
+		scan.close();
+
+		
+		
+//		 * 1.제품추가(메뉴추가)  => void add()
+//
+//		 * 2.제품리스트보기(메뉴판 출력) => void printProduct()
+//
+//		 * 3.제품주문(제품명,수량) => void orderPick(String name, int count)
+//
+//		 * 4.주문내역(주문리스트 출력) 지불총금액 계산 => void printOrder()
+//
+//		 * 5.프로그램 종료
+
+	}
+
+}

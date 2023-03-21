@@ -1,0 +1,71 @@
+package S2day05;
+
+public class SyncMain {
+
+	public static Bank myBank = new Bank();
+	public static void main(String[] args) {
+		
+		Hong h = new Hong();
+		h.start();
+		
+		HongWife hw = new HongWife();
+		hw.start();
+	}
+
+}
+
+class Bank{
+	private int money = 10000;
+	
+	public void saveMoney(int save) {
+		int m = this.money;
+		
+		try {
+			Thread.sleep(3000); // 1/1000 x 3000 = 3초
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		setMoney(m + save);
+	}
+
+	public void minusMoney(int minus) {
+		int m = this.money;
+		
+		try {
+			Thread.sleep(200);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		setMoney(m - minus);
+	}
+	
+	public int getMoney() {
+		return money;
+	}
+
+	public void setMoney(int money) {
+		this.money = money;
+	}
+	
+}
+
+class Hong extends Thread{
+	public void run() {
+		System.out.println("입금");
+		SyncMain.myBank.saveMoney(3000);
+		System.out.println("3천원 입금 후 : "+SyncMain.myBank.getMoney());
+	}
+}
+
+class HongWife extends Thread{
+	public void run() {
+		System.out.println("출금");		
+		SyncMain.myBank.minusMoney(1000);
+		System.out.println("1천원 출금 후 : "+SyncMain.myBank.getMoney());
+	}
+}
+

@@ -1,0 +1,137 @@
+package S2day02;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class AL_ProgramManager implements AL_Program {
+	Scanner scan = new Scanner(System.in);
+	private ArrayList <AL_Student> std = new ArrayList ();
+	
+	
+	public void printStudent() {
+		
+		for(int i = 0 ; i<std.size(); i++) {
+			std.get(i).stdPrint(); // 1명의 개인정보
+//			printStudentOne(std[i]); // 1명의 개인정보 + 수강정보
+			System.out.println("----------------");
+		}
+		
+	}
+
+	
+	public void insertStudent() {
+		System.out.println("--학생 정보 입력--");
+		System.out.print("학번 : ");
+		String snum = scan.next();
+		System.out.print("이름 : ");
+		String name = scan.next();
+		System.out.print("주민번호 : ");
+		String rnum = scan.next();
+		System.out.print("학부 : ");
+		String faculty = scan.next();
+		System.out.print("학과 : ");
+		String major = scan.next();
+		System.out.println("------------------");
+		
+		AL_Student s = new AL_Student(snum, name, rnum, faculty, major);
+		
+		std.add(s);
+	}
+	
+
+	
+	public void searchStudent() {
+	
+		System.out.print("검색할 학생의 이름을 입력해주세요 : ");
+		String name = scan.next(); 
+		for(int i = 0 ; i<std.size(); i++) {
+			if(std.get(i).getStdName().equals(name)) {
+				printStudentOne(std.get(i));
+				return;
+			}
+		}
+		System.out.println("검색한 학생은 등록되어있지 않습니다.");
+		
+	}
+
+	
+	public void registerSubject() {
+		
+		int index = -1;
+		System.out.println("검색할 학생의 이름과 학번을 입력해주세요 : ");
+		System.out.print("이름 : ");
+		String name = scan.next();
+		System.out.print("학번 : ");
+		String snum = scan.next();
+		for(int i = 0 ; i<std.size(); i++) {
+			if(std.get(i).getStdName().equals(name) && std.get(i).getStdNum().equals(snum)) {
+				index = i;
+			}
+		}
+		
+		if(snum == null) {  // 학번을 입력하지 않았을때도 작동
+			for(int i = 0 ; i<std.size(); i++) {
+				if(std.get(i).getStdName().equals(name)) {
+					index = i;
+				}
+			}
+		}
+		if(index == -1) {
+			System.out.println("검색한 학생은 등록되어있지 않습니다.");
+		}
+		else {
+			System.out.print("신청할 과목의 과목코드를 입력해주세요 : ");
+			String subcode = scan.next();
+			System.out.print("신청할 과목명를 입력해주세요 : ");
+			String subname = scan.next();
+			System.out.print("신청할 과목의 학점을 입력해주세요 : ");
+			double subcredit = scan.nextDouble();
+			
+			Subject sub = new Subject(subcode, subname,subcredit);
+			std.get(index).insertSubject(sub);
+		}
+		
+	}
+
+	
+	public void deleteSubject() {
+		
+		int index = -1;
+		System.out.println("과목을 삭제할 학생의 이름과 학번을 입력해주세요 : ");
+		System.out.print("이름 : ");
+		String name = scan.next();
+		System.out.print("학번 : ");
+		String snum = scan.next();
+		for(int i = 0 ; i<stdCount; i++) {
+			if(std[i].getStdName().equals(name) && std[i].getStdNum().equals(snum)) {
+				index = i;
+			}
+		}
+		if(snum == null) {
+			for(int i = 0 ; i<stdCount; i++) {
+				if(std[i].getStdName().equals(name)) {
+					index = i;
+					
+				}
+			}
+		}
+		
+		if(index == -1) {
+			System.out.println("검색한 학생은 등록되어있지 않습니다.");
+		}
+		else {
+			System.out.print("삭제할 과목명를 입력해주세요 : ");
+			String subname = scan.next();
+			
+			std[index].deleteSubject(subname);
+		}
+		
+	}
+
+	public void printStudentOne(AL_Student a) {
+		System.out.println("--학생정보--");
+		a.stdPrint();
+		System.out.println("--수강정보--");
+		a.subPrint();
+	}
+}

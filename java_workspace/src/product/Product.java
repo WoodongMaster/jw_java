@@ -1,0 +1,169 @@
+package product;
+
+import java.util.Scanner;
+
+import S2day01.Subject;
+
+public class Product {
+
+	private String menu;
+	private int price;
+	
+	public String getMenu() {
+		return menu;
+	}
+
+	public void setMenu(String menu) {
+		this.menu = menu;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	
+}
+
+class Order extends Product{
+	private int count;
+	private int total;
+	
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
+	public int getTotal() {
+		return total;
+	}
+	public void setTotal(int total) {
+		this.total = total;
+	}
+	
+	public void print() {
+		System.out.println(super.getMenu()+":"+super.getPrice());
+		System.out.println(count+"개 주문 , 총 금액 : "+total);
+	}
+	
+}
+
+class ProductManager{
+	
+	private Order menulist[] = new Order [5];
+	private int menuCount;
+	private Order orderlist[] = new Order[5];
+	private int orderCount;
+
+	Scanner scan = new Scanner(System.in);
+	
+	public void menuAdd() {
+		
+		while(true) {
+		System.out.println("메뉴를 추가합니다. 메뉴명과 가격을 적어주세요!");
+		System.out.print("메뉴명 : ");
+		String menu = scan.next();
+		System.out.print("가격 : ");
+		int price = scan.nextInt();
+		
+		Order tmp = new Order();
+		tmp.setMenu(menu);
+		tmp.setPrice(price);
+		
+		menulist[menuCount] = tmp; 
+		menuCount++;
+		
+		if(menuCount == menulist.length) {
+				//new를 이용 배열 생성 (신 배열을 생성) +5
+				Order[] tmplist = new Order[menulist.length+5];
+				//arraycopy를 이용한 배열복사
+				//System.arraycopy(구배열, 시작번지, 신배열, 시작번지, 총개수)
+				System.arraycopy(menulist, 0, tmplist, 0, menulist.length+5);
+				//새로만든 배열로 연결
+				menulist = tmplist; 
+				}
+		
+		System.out.println("메뉴를 더 추가하시겠습니까? (아무키 / n/N)");
+		String sc = scan.next();
+		
+		if(sc.equals("n")||sc.equals("N")) {
+			break;
+		}
+		
+		}
+	}
+	
+	public void menuPrint() {
+		for(int i = 0; i<menuCount; i++) {
+			System.out.println("메뉴명 : "+ menulist[i].getMenu()+ " 메뉴가격 : "+menulist[i].getPrice());
+		}
+		System.out.println("====================");
+	}
+	
+	public void menuDelete() {
+		
+	}
+	
+	public void menuPricefix() {
+		
+	}
+	
+	public void order() {
+		while(true) {
+		Order tmp = new Order();
+		int index = -1;
+		menuPrint();
+		System.out.print("주문할 메뉴명을 입력해주세요 : ");
+		String menu = scan.next();
+		
+		System.out.print("주문 수량을 입력해주세요 : ");
+		int num = scan.nextInt();
+		for(int i=0; i<menuCount; i++) {
+			if(menu.equals(menulist[i].getMenu())) {
+				index = i;
+		
+				tmp = menulist[index];
+				tmp.setCount(num);
+				
+				orderlist[orderCount] = tmp;
+				orderCount++;
+				
+				if(orderCount == orderlist.length) {
+					//new를 이용 배열 생성 (신 배열을 생성) +5
+					Order[] tmplist = new Order[orderlist.length+5];
+					//arraycopy를 이용한 배열복사
+					//System.arraycopy(구배열, 시작번지, 신배열, 시작번지, 총개수)
+					System.arraycopy(orderlist, 0, tmplist, 0, orderlist.length+5);
+					//새로만든 배열로 연결
+					orderlist = tmplist; 
+					}
+				
+			}
+		}
+		if(index==-1) {
+			System.out.println("메뉴판에 없는 메뉴입니다.");
+		}
+		
+		
+		System.out.println("주문을 더 하시겠습니까? (아무키 / n/N)");
+		String sc = scan.next();
+		
+		if(sc.equals("n")||sc.equals("N")) {
+			break;
+			}
+		}
+	}
+	
+	public void orderlistPrint() {
+	int total=0;
+		for(int i = 0 ; i<orderCount; i++) {
+		System.out.println("메뉴명 : "+orderlist[i].getMenu()+ ", 수량 : "+ orderlist[i].getCount());
+		orderlist[i].setTotal(orderlist[i].getPrice()*orderlist[i].getCount());
+		total += orderlist[i].getTotal();
+		}
+		System.out.println("지불 금액 : "+ total + "원");
+	}
+}

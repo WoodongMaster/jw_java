@@ -1,0 +1,170 @@
+package S2day01;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public interface Program {
+	abstract void printStudent();
+	abstract void insertStudent();
+	abstract void searchStudent();
+	abstract void registerSubject();
+	abstract void deleteSubject();
+}
+
+class subject{
+	// - 과목코드, 과목명, 학점, 시수, 교수명, 학기, 분류, 수업시간표
+	int subjectCode;
+	String subjectName;
+	int playTime;
+	String professorName;
+	int season;
+	String subjectType;
+	String subjectDayTime;
+	
+	ArrayList<subject> sub = new ArrayList<subject>();
+
+	subject kor = new subject();
+	subject math = new subject();
+	subject sci = new subject();
+	subject phy = new subject();
+	subject his = new subject();
+	
+	public subject() {
+	}
+	
+	public void Korean(subject a) {
+		a.setSubjectCode(01);
+		a.setSubjectName("국어");
+		a.setPlayTime(4);
+		a.setProfessorName("이순신");
+		a.setSeason(1);
+		a.setSubjectType("전공");
+		a.setSubjectDayTime("월요일 2교시");	
+		kor = a;
+		sub.add(kor);
+	}
+	public void Math(subject a) {
+		a.setSubjectCode(02);
+		a.setSubjectName("수학");
+		a.setPlayTime(4);
+		a.setProfessorName("강감찬");
+		a.setSeason(2);
+		a.setSubjectType("전공");
+		a.setSubjectDayTime("화요일 2교시");	
+		math = a;
+		sub.add(math);
+	}
+	public void Sci(subject a) {
+		a.setSubjectCode(03);
+		a.setSubjectName("과학");
+		a.setPlayTime(4);
+		a.setProfessorName("김구");
+		a.setSeason(2);
+		a.setSubjectType("전공");
+		a.setSubjectDayTime("수요일 2교시");	
+		sci = a;
+		sub.add(sci);
+	}
+	public void Phy(subject a) {
+		a.setSubjectCode(04);
+		a.setSubjectName("과학");
+		a.setPlayTime(4);
+		a.setProfessorName("세종");
+		a.setSeason(1);
+		a.setSubjectType("전공");
+		a.setSubjectDayTime("목요일 2교시");	
+		phy = a;
+		sub.add(phy);
+	}
+	public void His(subject a) {
+		a.setSubjectCode(05);
+		a.setSubjectName("역사");
+		a.setPlayTime(4);
+		a.setProfessorName("류성룡");
+		a.setSeason(2);
+		a.setSubjectType("전공");
+		a.setSubjectDayTime("금요일 2교시");	
+		his = a;
+		sub.add(his);
+	}
+
+	
+	public int getSubjectCode() {
+		return subjectCode;
+	}
+	public void setSubjectCode(int subjectCode) {
+		this.subjectCode = subjectCode;
+	}
+	public String getSubjectName() {
+		return subjectName;
+	}
+	public void setSubjectName(String subjectName) {
+		this.subjectName = subjectName;
+	}
+	public int getPlayTime() {
+		return playTime;
+	}
+	public void setPlayTime(int playTime) {
+		this.playTime = playTime;
+	}
+	public String getProfessorName() {
+		return professorName;
+	}
+	public void setProfessorName(String professorName) {
+		this.professorName = professorName;
+	}
+	public int getSeason() {
+		return season;
+	}
+	public void setSeason(int season) {
+		this.season = season;
+	}
+	public String getSubjectType() {
+		return subjectType;
+	}
+	public void setSubjectType(String subjectType) {
+		this.subjectType = subjectType;
+	}
+
+	public String getSubjectDayTime() {
+		return subjectDayTime;
+	}
+
+	public void setSubjectDayTime(String subjectDayTime) {
+		this.subjectDayTime = subjectDayTime;
+	}
+
+	public ArrayList<subject> getSub() {
+		return sub;
+	}
+	public void setSub(ArrayList<subject> sub) {
+		this.sub = sub;
+	}
+	
+	
+	
+	
+	
+}
+
+class student{
+	
+}
+
+class studentManager implements Program{
+	public void printStudent() {
+		
+	}
+	public void insertStudent() {
+	//입력 	
+	}
+	public void searchStudent() {
+		//입력		
+	}
+	public void registerSubject() {
+		//입력	
+	}
+	public void deleteSubject() {
+		//입력	
+	}
+}

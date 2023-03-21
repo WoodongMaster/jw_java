@@ -1,0 +1,33 @@
+package S2day03;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
+import java.util.stream.Stream;
+
+public class StreamEx03 {
+	Scanner scan = new Scanner(System.in);
+	// 학생클래스 name, store 
+	// 생성자, get/setter
+	private ArrayList<Student> std = new ArrayList<>();
+	private int stdCount;
+	
+	// ArrayList 스튜던트 list 생성 후
+	// list.add() 학생명,점수 추가
+	public void Add() {
+		System.out.print("학생이름 :");
+		String name = scan.next();
+		System.out.print("점수 : ");
+		int score = scan.nextInt();
+		
+		std.add(new Student(name, score));
+		stdCount++;
+	}
+	
+	public void print() {
+		Stream<Student> a = std.stream();
+		a.sorted().map(n->n.getScore()).forEach(System.out::print);;
+		//Arrays.stream(std).sorted().distinct().filter(n->n%2==0).forEach(System.out::println);
+	}
+	//list로 스트림 생성 후 이름:점수 출력
+}

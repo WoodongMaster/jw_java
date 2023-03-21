@@ -1,0 +1,32 @@
+package S2day03;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Travel {
+
+	public static void main(String[] args) {
+		List<Customer> cus = new ArrayList<>();
+		
+		cus.add(new Customer("김김", 30));
+		cus.add(new Customer("박박", 50));
+		cus.add(new Customer("홍홍", 8));
+		cus.add(new Customer("이이", 11));
+		cus.add(new Customer("강강", 21));
+		cus.add(new Customer("엄엄", 5));
+		
+		
+		cus.stream().forEach(s->{
+			String name = s.getName();
+			int age = s.getAge();
+			int cost = s.getCost();
+			System.out.println("이름:"+name+ ", 나이:"+age+", 비용:"+cost);
+		});
+	
+		int total = cus.stream().mapToInt(n->n.getCost()).sum();
+		
+		int count = (int)cus.stream().count();
+		
+	}
+
+}

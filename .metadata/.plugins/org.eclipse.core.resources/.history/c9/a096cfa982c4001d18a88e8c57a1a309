@@ -1,0 +1,25 @@
+package S2day03;
+
+import java.util.ArrayList;
+import java.util.stream.Stream;
+
+public class StreamEX {
+
+	public static void main(String[] args) {
+		ArrayList<String> str = new ArrayList<>();
+		
+		str.add("이순신");
+		str.add("강감찬");
+		str.add("권율");
+		str.add("김시민");
+		
+		Stream<String> s = str.stream();
+		
+		
+		s.forEach(System.out::println);
+		
+		
+
+	}
+
+}

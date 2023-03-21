@@ -1,0 +1,47 @@
+package S2day02;
+
+import java.util.Scanner;
+
+public class WordMain {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		
+		Dictionary dc = new Dictionary();
+		int sc = -1;
+		
+		do {
+			
+			System.out.println("==== 단어장 프로그램 ====");
+			System.out.println("1. 단어추가");
+			System.out.println("2. 단어출력");
+			System.out.println("3. 단어검색");
+			System.out.println("4. 단어수정");
+			System.out.println("5. 단어삭제");
+			System.out.println("0. 종료");
+		
+			switch(sc) {
+			case 1 : 
+				word_insert(scan);
+				break;
+			case 2 : 
+				word_print();
+				break;
+			case 3 : 
+				word_search(scan);
+				break;
+			case 4 :
+				word_update(scan);
+				break;
+			case 5 : 
+				word_delete(scan);
+				break;
+			case 0 :
+				System.out.println("프로그램 종료!");
+				break;
+			}
+			
+		}while(sc != 0);
+	}
+
+}

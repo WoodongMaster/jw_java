@@ -1,0 +1,48 @@
+package S2day01;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public interface Program {
+	abstract void printStudent();
+	abstract void insertStudent();
+	abstract void searchStudent();
+	abstract void registerSubject();
+	abstract void deleteSubject();
+}
+
+class subject{
+	// - 과목코드, 과목명, 학점, 시수, 교수명, 학기, 분류, 수업시간표
+	int subjectCode;
+	String subjectName;
+	int playTime;
+	String professorName;
+	int season;
+	String subjectType;
+	String subjectDay;
+	int subjectTime;
+	
+	ArrayList<subject> sub = new ArrayList<subject>();
+}
+
+class student{
+	
+}
+
+class studentManager implements Program{
+	public void printStudent() {
+		
+	}
+	public void insertStudent() {
+	//입력 	
+	}
+	public void searchStudent() {
+		//입력		
+	}
+	public void registerSubject() {
+		//입력	
+	}
+	public void deleteSubject() {
+		//입력	
+	}
+}

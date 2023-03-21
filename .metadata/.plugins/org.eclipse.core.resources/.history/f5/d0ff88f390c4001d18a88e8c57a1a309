@@ -1,0 +1,17 @@
+package S2day03;
+
+import java.util.Scanner;
+
+public class main {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		StreamEx03 ex = new StreamEx03();
+		
+		ex.Add();
+		ex.print();
+		
+		System.out.println();
+	}
+
+}

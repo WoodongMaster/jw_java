@@ -1,0 +1,30 @@
+package day13;
+
+import java.util.HashMap;
+
+public class 메뉴map {
+
+	public static void main(String[] args) {
+		
+
+	}
+
+}
+
+class FoodManager1{
+	HashMap<String, Integer> menu = new HashMap();
+	public void printMenu() {
+	for(int i=0; i<menu.size();i++) {
+		System.out.println((i+1)+"."+menu.keySet()+":"+menu.get(menu.keySet())+"원");
+		}
+	}
+	public void add() {
+		menu.put("뼈해장국",8000);
+		menu.put("잔치국수",5000);
+		menu.put("햄버거",7000);
+		menu.put("제육덮밥",6000);
+		menu.put("돈까스",10000);
+		menu.put("치즈돈까스",12000);
+		menu.put("콜라",1500);
+	}
+}

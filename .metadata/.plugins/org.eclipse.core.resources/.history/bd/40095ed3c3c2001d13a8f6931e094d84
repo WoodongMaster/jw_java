@@ -1,0 +1,269 @@
+package S2day01;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public interface Program {
+	abstract void printStudent();
+	abstract void insertStudent();
+	abstract void searchStudent();
+	abstract void registerSubject();
+	abstract void deleteSubject();
+}
+
+class Subject {
+	/* 과목클래스 : 한 과목의 정보를 나타내는 클래스
+		- 과목코드, 과목명, 학점, 시수, 교수명, 학기, 분류, 수업시간표
+		- 멤버변수 선언, 생성자, getter/setter, 그외 필요한 toString(print 메서드)
+	 * */
+	
+	// 멤버변수 선언 - 일반적으로 private으로 선언
+	private String subCode;  // 기본값 = null
+	private String subName;
+	private double subCredite;
+	private int subTime;
+	private String subProfessor;
+	private String subSemester;
+	private String subCategory;
+	private String subScheduler;
+	
+	//생성자 : 객체를 생성할 때 기본으로 setting 하고자는 하는 값을 미리 입력받아서 객체를 생성
+	//생성자는 기본 아무것도 없는 값을 가지고 있음. => 생성자를 추가하지 않는다면 자동 생성
+	//추가 생성자를 만든다면 기본 생성자는 사라짐.(자동생성 하지 않음=>직접 만들어야 함.)
+	public Subject() {}  //기본생성자
+	
+	//과목명만 받는 생성자
+	public Subject(String subName) {
+		this.subName = subName;
+	}
+	//과목코드, 과목명, 학점만 받는 생성자
+	public Subject(String subCode, String subName, double subCredite) {
+		this.subCode = subCode;
+		this.subName = subName;
+		this.subCredite = subCredite;
+	}
+	//전체 데이터를 받는 생성자
+	public Subject(String subCode, String subName, double subCredite, int subTime, String subProfessor,
+			String subSemester, String subCategory, String subScheduler) {
+		this.subCode = subCode;
+		this.subName = subName;
+		this.subCredite = subCredite;
+		this.subTime = subTime;
+		this.subProfessor = subProfessor;
+		this.subSemester = subSemester;
+		this.subCategory = subCategory;
+		this.subScheduler = subScheduler;
+	}
+	//getter/setter
+	public String getSubCode() {
+		return subCode;
+	}
+	public void setSubCode(String subCode) {
+		this.subCode = subCode;
+	}
+	public String getSubName() {
+		return subName;
+	}
+	public void setSubName(String subName) {
+		this.subName = subName;
+	}
+	public double getSubCredite() {
+		return subCredite;
+	}
+	public void setSubCredite(double subCredite) {
+		this.subCredite = subCredite;
+	}
+	public int getSubTime() {
+		return subTime;
+	}
+	public void setSubTime(int subTime) {
+		this.subTime = subTime;
+	}
+	public String getSubProfessor() {
+		return subProfessor;
+	}
+	public void setSubProfessor(String subProfessor) {
+		this.subProfessor = subProfessor;
+	}
+	public String getSubSemester() {
+		return subSemester;
+	}
+	public void setSubSemester(String subSemester) {
+		this.subSemester = subSemester;
+	}
+	public String getSubCategory() {
+		return subCategory;
+	}
+	public void setSubCategory(String subCategory) {
+		this.subCategory = subCategory;
+	}
+	public String getSubScheduler() {
+		return subScheduler;
+	}
+	public void setSubScheduler(String subScheduler) {
+		this.subScheduler = subScheduler;
+	}
+	@Override
+	public String toString() {
+		return "Subject [subCode=" + subCode + ", subName=" + subName + ", subCredite=" + subCredite + ", subTime="
+				+ subTime + ", subProfessor=" + subProfessor + ", subSemester=" + subSemester + ", subCategory="
+				+ subCategory + ", subScheduler=" + subScheduler + "]";
+	}
+	
+}
+
+class Student {
+	/* 학생클래스 : 한 학생의 정보를 나타내는 클래스 
+		- 학번, 이름, 주민번호, 학부, 학과, 수강과목s(과목클래스를 배열생성)
+		- 수강과목의 번지를 대신할 count 
+		- 메서드 
+		  - 수강과목 추가(배열이 다 찼다면 늘려주기)
+		  - 수강과목 삭제
+		- 생성자, getter/setter, 출력메서드(print) - 2가지 형태로
+	 * */
+	
+	//멤버변수
+	private String stdNum;
+	private String stdName;
+	private String registerNum;
+	private String faculty;
+	private String major;
+	private Subject[] subjectList; //subject 클래스를 배열로 선언.
+	private int subCount;
+	
+	//생성자
+	public Student() {}
+	//전체 요소를 받는 생성자
+	public Student(String stdNum, String stdName, String registerNum, String faculty, String major) {
+		this.stdNum = stdNum;
+		this.stdName = stdName;
+		this.registerNum = registerNum;
+		this.faculty = faculty;
+		this.major = major;
+	}
+	
+	//메서드
+	//print method : 학생정보만 출력
+	public void stdPrint() {
+		System.out.println("학생명(학번):"+stdName+"("+stdNum+")");
+		System.out.println("학부(학과):"+faculty+"("+major+")");
+	}
+	
+	//수강과목을 출력하는 메서드
+	public void subPrint() {
+		//수강과목이 없을 때
+		if(subCount==0) {
+			System.out.println("수강중인 과목이 없습니다.");
+		}
+		//수강과목이 있을 때 : 수강과목은 여러개 있을 수 있음.
+		for(int i=0; i<subCount; i++) {
+			System.out.println(subjectList[i]); //toString을 이용한 출력
+			//print메서드로 직접 sysout을 했을 경우
+			//subjectList[i].print();  //subject 클래스에 print메서드가 있을 경우 호출
+		}
+	}
+	
+	//수강과목 추가
+	/* 매개변수 : Subject subName
+	 * 리턴타입 : void
+	 * */
+	public void insertSubject(Subject subName) {
+		//배열이 다 찼다면 늘려주기
+		if(subCount == subjectList.length) {
+			//new를 이용 배열 생성 (신 배열을 생성) +5
+			Subject[] tmp = new Subject[subjectList.length+5];
+			//arraycopy를 이용한 배열복사
+			//System.arraycopy(구배열, 시작번지, 신배열, 시작번지, 총개수)
+			System.arraycopy(subjectList, 0, tmp, 0, subjectList.length);
+			//새로만든 배열로 연결
+			subjectList = tmp; 
+		}
+		
+		//subName 추가
+		subjectList[subCount] = subName;
+		subCount++;  //값을 추가했기 때문에 subCount 증가
+	}
+	
+	//수강과목 삭제
+	/* 매개변수 : String subName
+	 * 리턴타입 : void
+	 * */
+	public void deleteSubject(String subName) {
+		int index = -1; //찾는 과목의 위치를 나타내는 변수
+		// 만약 매개변수의 값이 null이라면 return(메서드 빠져나감)
+		if(subName == null) {
+			return;
+		}
+		//subName이 subjectList에 있는지 검색
+		for(int i=0; i<subCount; i++) {
+			if(subjectList[i].getSubName().equals(subName)) {
+				//있다면 번지를 index에 저장 
+				index = i;
+				break;
+			}
+		}
+		
+		//찾는 과목이 없다면... return
+		if(index == -1) {
+			return;
+		}
+		
+		//찾았을 경우 삭제.
+		//찾은 위치부터 뒷번지의 과목을 앞번지로 옮기는 작업
+		//subCount = 1 1과목이 있다는것을 의미 subjectList = 0번지
+		for(int i=index; i<subCount-1; i++) {
+			subjectList[i] = subjectList[i+1];
+		}
+		
+		//마지막 번지는 null
+		//ex) 과목이 3개 있다면 0 1 2
+		subjectList[subCount-1]=null;
+		subCount--; 
+		
+	}
+	
+	
+	//getter/setter
+	public String getStdNum() {
+		return stdNum;
+	}
+	public void setStdNum(String stdNum) {
+		this.stdNum = stdNum;
+	}
+	public String getStdName() {
+		return stdName;
+	}
+	public void setStdName(String stdName) {
+		this.stdName = stdName;
+	}
+	public String getRegisterNum() {
+		return registerNum;
+	}
+	public void setRegisterNum(String registerNum) {
+		this.registerNum = registerNum;
+	}
+	public String getFaculty() {
+		return faculty;
+	}
+	public void setFaculty(String faculty) {
+		this.faculty = faculty;
+	}
+	public String getMajor() {
+		return major;
+	}
+	public void setMajor(String major) {
+		this.major = major;
+	}
+	public Subject[] getSubjectList() {
+		return subjectList;
+	}
+	public void setSubjectList(Subject[] subjectList) {
+		this.subjectList = subjectList;
+	}
+	public int getSubCount() {
+		return subCount;
+	}
+	
+	
+	
+}
